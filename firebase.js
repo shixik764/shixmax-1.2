@@ -1,7 +1,3 @@
-// ---------------------
-// Firebase CONFIG
-// ---------------------
-
 const firebaseConfig = {
     apiKey: "AIzaSyAEHPyMzxzCzOafQK0GrHQX3VObfZhaIBQ",
     authDomain: "shixmax-9fa29.firebaseapp.com",
@@ -11,11 +7,6 @@ const firebaseConfig = {
     messagingSenderId: "1010580392768",
     appId: "1:1010580392768:web:523bfdc415f821deae48a5"
 };
-
-// ---------------------
-// Firebase INIT
-// ---------------------
-
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
