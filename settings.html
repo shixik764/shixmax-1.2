@@ -1,0 +1,6 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8'><meta name="viewport" content="width=device-width,initial-scale=1"><title>Настройки</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="header"><div class="brand">Shixmax</div></div>
+<div class="container"><aside class="sidebar"><div style="padding:12px"><a href="index_main.html" class="btn">← Назад</a></div></aside>
+<main class="main"><div style="padding:20px"><h3>Настройки</h3><div style="max-width:420px"><div style="margin-bottom:12px"><button id="themeToggle" class="btn">Переключить тему</button></div><div class="small">Текущая тема хранится в localStorage</div></div></div></main></div>
+<script src="firebase.js"></script><script>document.getElementById('themeToggle').addEventListener('click', ()=>{ document.body.classList.toggle('dark'); localStorage.setItem('shix_theme', document.body.classList.contains('dark')?'dark':'light'); }); if(localStorage.getItem('shix_theme')==='dark') document.body.classList.add('dark');</script>
+</body></html>

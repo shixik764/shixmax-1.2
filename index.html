@@ -1,0 +1,24 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8'><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shixmax — Вход</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="center"><div class="card" style="background:transparent">
+  <h2 style="margin:0 0 12px 0;color:var(--text)">Вход в Shixmax</h2>
+  <div style="width:320px">
+    <input id="email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,36,0.06)">
+    <div style="height:8px"></div>
+    <input id="password" type="password" placeholder="Пароль" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,36,0.06)">
+    <div style="height:12px"></div>
+    <div style="display:flex;gap:8px">
+      <button id="loginBtn" class="btn">Войти</button>
+      <a href="register.html" class="small" style="align-self:center">Регистрация</a>
+    </div>
+  </div>
+</div></div>
+<script src="firebase.js"></script>
+<script>
+document.getElementById('loginBtn').addEventListener('click', async ()=>{
+  const email=document.getElementById('email').value.trim();
+  const pass=document.getElementById('password').value;
+  if(!email||!pass) return alert('Введите email и пароль');
+  try{ await auth.signInWithEmailAndPassword(email, pass); location.href='index_main.html'; } catch(e){ alert(e.message); }
+});
+</script>
+</body></html>

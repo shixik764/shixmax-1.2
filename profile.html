@@ -1,0 +1,11 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8'><meta name="viewport" content="width=device-width,initial-scale=1"><title>Профиль</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="header"><div class="brand">Shixmax</div></div>
+<div class="container"><aside class="sidebar"><div style="padding:12px"><a href="index_main.html" class="btn">← Главная</a></div></aside>
+<main class="main"><div style="padding:20px"><h3>Профиль</h3><div style="max-width:420px"><label>Никнейм</label><input id="nick" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,36,0.06)"><div style="height:8px"></div><label>Аватар</label><input id="avatarFile" type="file" accept="image/*"><div style="height:12px"></div><div class="avatar" style="width:96px;height:96px"><img id="avatarPreview" src=""></div><div style="height:12px"></div><button id="saveProfile" class="btn">Сохранить</button></div></div></main></div>
+<script src="firebase.js"></script>
+<script>
+auth.onAuthStateChanged(async user=>{ if(!user) return location.href='index.html'; const uid=user.uid; const p=(await db.ref('profiles/'+uid).once('value')).val()||{}; document.getElementById('nick').value = p.name||user.email; if(p.avatar) document.getElementById('avatarPreview').src = p.avatar;
+  document.getElementById('avatarFile').addEventListener('change', async ()=>{ const f=document.getElementById('avatarFile').files[0]; if(!f) return; const ucFile = uploadcare.fileFrom('object', f); const uploaded = await ucFile.upload(); const url = uploaded.cdnUrl; document.getElementById('avatarPreview').src = url; await db.ref('profiles/'+uid).update({ avatar: url }); });
+  document.getElementById('saveProfile').addEventListener('click', async ()=>{ const name=document.getElementById('nick').value.trim()||user.email; await db.ref('profiles/'+uid).update({ name }); alert('Сохранено'); });
+});
+</script></body></html>
